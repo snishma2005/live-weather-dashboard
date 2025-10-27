@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Live Weather Dashboard</title>
+<style>	body { font-family: Arial, sans-serif; background: #e0f7fa; text-align: center; padding: 20px; }
+.weather-box { background: #ffffff; padding: 20px; border-radius: 10px; display: inline-block; box-shadow: 0 0 10px rgba(0,0,0,0.1); }	input,
+button { padding: 10px; margin: 10px; font-size: 16px; } #weather-icon { width: 100px; }
+</style>
+</head>
+<body>
+<h1> Live Weather Dashboard</h1>
+<input type="text" id="city" placeholder="Enter city name" />
+<button onclick="getWeather()">Get Weather</button>
+<div class="weather-box" id="weather-info" style="display:none;">
+<h2 id="city-name"></h2>
+<img id="weather-icon" src="" alt="Weather Icon" />
+<p id="temperature"></p>
+<p id="description"></p>
+<p id="wind"></p>
+</div> 
+<script>	async function getWeather() { const city = document.getElementById('city').value; const apiKey = '8817fb900ba3696bf53837ddcf1075c0';
+consturl=https://openweathermap.org/weathermap?basema p=map&cities=true&layer
+=temperature&lat=11.5941&lon=77.9187&zoom=5;	
+try {		const response = await fetch(url);	const data = await response.json();		if (data.cod === 200) {
+ 
+document.getElementById('weather-info').style.display = 'block'; document.getElementById('city-name').textContent=data.name; document.getElementById('weathericon').src=https://openweathermap.org/img/wn/${ data.weather[0].icon}@2x.png; document.getElementById('temperature').textContent=Temperature:
+${data.main.temp}°C; document.getElementById('description').textContent=Condition:
+${data.weather[0].description};	document.getElementById('wind').textContent
+
+= Wind Speed: ${data.wind.speed} m/s;
+
+} else {	alert('City not found!');
+}
+} catch (error) {	alert('Error fetching weather data.');
+}
+}
+</script>
+</body>
+</html>
